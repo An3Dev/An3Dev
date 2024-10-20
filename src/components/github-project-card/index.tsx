@@ -108,7 +108,7 @@ const GithubProjectCard = ({
             </p>
           </div>
           <div className="flex justify-between text-sm text-base-content text-opacity-60 truncate">
-            <div className="flex flex-grow">
+            <div className="flex">
               <span className="mr-3 flex items-center">
                 <AiOutlineStar className="mr-0.5" />
                 <span>{item.stargazers_count}</span>
@@ -118,6 +118,13 @@ const GithubProjectCard = ({
                 <span>{item.forks_count}</span>
               </span>
             </div>
+            {/* {item?.commits !== null && (
+              <div>
+                <span className="flex items-center">
+                  <span>Commits: {item.commits}</span>
+                </span>
+              </div>
+            )} */}
             <div>
               <span className="flex items-center">
                 <div

@@ -82,6 +82,40 @@ const GitProfile = ({ config }: { config: Config }) => {
           headers: { 'Content-Type': 'application/vnd.github.v3+json' },
         });
         const repoData = repoResponse.data;
+        // Sort the projects based on the order in the config
+        repoData.items = repoData.items.sort((a: GithubProject, b: GithubProject) => {
+          return (
+            sanitizedConfig.projects.github.manual.projects.indexOf(a?.full_name ?? a.name) -
+            sanitizedConfig.projects.github.manual.projects.indexOf(b?.full_name ?? b.name)
+          );
+        });
+
+        // Replace ShaderLab language with C#
+        repoData.items.forEach((project: GithubProject) => {
+          if (project.language === 'ShaderLab' || project.language === 'Mathematica') {
+            project.language = 'C#';
+          } else if (project.language === 'C++') {
+            project.language = 'Dart';
+          }
+          project.commits = undefined
+        });
+        
+        // repoData.items.forEach(async (project: GithubProject) => {
+        //   const url = `https://api.github.com/repos/${project.full_name}/commits`
+        //   const repoResponse = await axios.get(url, {
+        //   headers: { 'Content-Type': 'application/vnd.github.v3+json' },
+        //   });
+        //   const repoData = repoResponse.data;
+        //   console.log(project.name, repoData);
+        //   let commitCount = 0
+        //   repoData.forEach((commit: any) => {
+        //     if (commit?.author?.login === sanitizedConfig.github.username) {
+        //       commitCount++;
+        //     }
+        //   }
+        //   );
+        //   project.commits = commitCount;
+        // });
 
         return repoData.items;
       }
