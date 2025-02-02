@@ -98,7 +98,7 @@ const CONFIG = {
   experiences: [
     {
       company: 'Audioscape, Inc.', 
-      position: 'Software Developer',
+      position: 'Software Developer Intern',
       from: 'May 2024',
       to: 'Present',
       companyLink: 'https://audioscape.ai',
