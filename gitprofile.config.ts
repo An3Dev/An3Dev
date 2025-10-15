@@ -97,11 +97,18 @@ const CONFIG = {
   ],
   experiences: [
     {
-      company: 'Audioscape, Inc.', 
+      company: 'ClassGenius', 
       position: 'Software Developer Intern',
       from: 'May 2024',
       to: 'Present',
       companyLink: 'https://audioscape.ai',
+    },
+    {
+      company: 'Audioscape, Inc.', 
+      position: 'Software Developer Intern',
+      from: 'April 2025',
+      to: 'Present',
+      companyLink: 'https://classgenius.ai',
     },
     {
       company: 'Freelance Developer', 
