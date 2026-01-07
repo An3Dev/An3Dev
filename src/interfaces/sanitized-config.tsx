@@ -15,7 +15,7 @@ export interface SanitizedGitHubProjects {
     };
   };
   manual: {
-    projects: Array<string>;
+    projects: Array<string | { repo: string; description: string }>;
   };
 }
 

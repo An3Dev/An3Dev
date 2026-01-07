@@ -25,7 +25,19 @@ const CONFIG = {
       },
       manual: {
         // Properties for manually specifying projects
-        projects: ['An3Dev/RacingGame', 'An3Dev/friendquotes', 'An3Dev/MustardMath', 'Tritron-Robotics/robotcode2022', 'ShreyesS/medftw', 'An3Dev/MegMagnet', 'An3Dev/TrashGameVR', 'An3Dev/RewindGameJam'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: [
+          'An3Dev/RacingGame', 
+          'An3Dev/friendquotes', 
+          'An3Dev/MustardMath', 
+          'Tritron-Robotics/robotcode2022', 
+          { 
+            repo: 'ShreyesS/medftw', 
+            description: 'Cal Hacks 2022 2nd Place(InterSystems) Winner. Healthcare mobile app built with Flutter that integrates with InterSystems FHIR API to display patient data, allergies, immunizations, medical records, care plans, and nearby practitioners using geolocation.'
+          }, 
+          'An3Dev/MegMagnet', 
+          'An3Dev/TrashGameVR', 
+          'An3Dev/RewindGameJam'
+        ], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
     external: {

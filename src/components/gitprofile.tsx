@@ -72,8 +72,20 @@ const GitProfile = ({ config }: { config: Config }) => {
         if (sanitizedConfig.projects.github.manual.projects.length === 0) {
           return [];
         }
-        const repos = sanitizedConfig.projects.github.manual.projects
-          .map((project) => `+repo:${project}`)
+        
+        // Create a map for custom descriptions
+        const customDescriptions = new Map<string, string>();
+        const repoNames = sanitizedConfig.projects.github.manual.projects.map((project) => {
+          if (typeof project === 'string') {
+            return project;
+          } else {
+            customDescriptions.set(project.repo, project.description);
+            return project.repo;
+          }
+        });
+        
+        const repos = repoNames
+          .map((repo) => `+repo:${repo}`)
           .join('');
 
         const url = `https://api.github.com/search/repositories?q=${repos}+fork:true&type=Repositories`;
@@ -85,19 +97,25 @@ const GitProfile = ({ config }: { config: Config }) => {
         // Sort the projects based on the order in the config
         repoData.items = repoData.items.sort((a: GithubProject, b: GithubProject) => {
           return (
-            sanitizedConfig.projects.github.manual.projects.indexOf(a?.full_name ?? a.name) -
-            sanitizedConfig.projects.github.manual.projects.indexOf(b?.full_name ?? b.name)
+            repoNames.indexOf(a?.full_name ?? a.name) -
+            repoNames.indexOf(b?.full_name ?? b.name)
           );
         });
 
-        // Replace ShaderLab language with C#
+        // Replace ShaderLab language with C# and apply custom descriptions
         repoData.items.forEach((project: GithubProject) => {
           if (project.language === 'ShaderLab' || project.language === 'Mathematica') {
             project.language = 'C#';
           } else if (project.language === 'C++') {
             project.language = 'Dart';
           }
-          project.commits = undefined
+          project.commits = undefined;
+          
+          // Apply custom description if available
+          const customDesc = customDescriptions.get(project.full_name);
+          if (customDesc) {
+            project.description = customDesc;
+          }
         });
         
         // repoData.items.forEach(async (project: GithubProject) => {

@@ -61,8 +61,9 @@ interface GitHubProjects {
      * These projects will be displayed
      *
      * example: ['my-project1', 'my-project2']
+     * or with custom descriptions: [{ repo: 'my-project1', description: 'Custom description' }]
      */
-    projects?: Array<string>;
+    projects?: Array<string | { repo: string; description: string }>;
   };
 }
 
