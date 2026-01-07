@@ -92,6 +92,7 @@ const CONFIG = {
     'Java',
     'C#',
     'C/C++',
+    'Go',
     'Flutter',
     'Unity Game Engine',
   ],
