@@ -112,9 +112,12 @@ const GitProfile = ({ config }: { config: Config }) => {
           project.commits = undefined;
           
           // Apply custom description if available
-          const customDesc = customDescriptions.get(project.full_name);
-          if (customDesc) {
-            project.description = customDesc;
+          const projectKey = project.full_name ?? project.name;
+          if (projectKey) {
+            const customDesc = customDescriptions.get(projectKey);
+            if (customDesc) {
+              project.description = customDesc;
+            }
           }
         });
         

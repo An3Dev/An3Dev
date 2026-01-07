@@ -1,1 +1,0 @@
-Electrical Engineering and Computer Science student at UC Berkeley—student for now, learner for life!
